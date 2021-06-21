@@ -39,12 +39,18 @@ instance.prototype.config_fields = function () {
 			id: 'info',
 			width: 12,
 			label: 'Information',
-			value: '<strong>PLEASE READ THIS!</strong> Generic modules is only for use with custom applications. If you use this module to control a device or software on the market that more than you are using, <strong>PLEASE let us know</strong> about this software, so we can make a proper module for it. If we already support this and you use this to trigger a feature our module doesnt support, please let us know. We want companion to be as easy as possible to use for anyone.<br /><br />Use the \'Base URL\' field below to define a starting URL for the instance\'s commands: e.g. \'http://server.url/path/\'.  <b>This field will be ignored if a command uses a full URL.</b>'
+			value: 'Televic G3 Conference Microphone control<BR>Uses the IP interface to turn Microphones On/Off<BR>Feedback uses the Camera Interface which must be enabled via web interface.'
 		},
 		{
 			type: 'textinput',
 			id: 'prefix',
-			label: 'Base URL',
+			label: 'IP of WCAP controller',
+			width: 12
+		}
+		{
+			type: 'textinput',
+			id: 'UDP_port',
+			label: 'UDP Port for feedback (Camera Control interface)',
 			width: 12
 		}
 	]

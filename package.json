@@ -12,6 +12,5 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
 	"author": "Kyle Remphrey <remphrey@gmail.com>",
-	"license": "MIT",
-
+	"license": "MIT"
 }

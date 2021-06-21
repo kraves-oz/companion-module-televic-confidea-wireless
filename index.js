@@ -159,7 +159,7 @@ instance.prototype.action = function(action) {
 
 	if ( self.config.host !== undefined && action.options.url.substring(0,4) != 'http' ) {
 		if ( self.config.host.length > 0 ) {
-			cmd = 'http://' + self.config.host + action.options.url;
+			cmd = 'http://' + self.config.host + '/' + action.options.url;
 		}
 		else {
 			cmd = action.options.url;
@@ -171,42 +171,42 @@ instance.prototype.action = function(action) {
 
 	switch(action.action) {
 
-		case 'get': {
+		case 'get': 
 			var header;
-		if(!!action.options.header) {
-			try {
-				header = JSON.parse(action.options.header);
-			} catch(e){
-				self.log('error', 'HTTP POST Request aborted: Malformed JSON header (' + e.message+ ')');
-				self.status(self.STATUS_ERROR, e.message);
-				return
+			if(!!action.options.header) {
+				try {
+					header = JSON.parse(action.options.header);
+				} catch(e){
+					self.log('error', 'HTTP POST Request aborted: Malformed JSON header (' + e.message+ ')');
+					self.status(self.STATUS_ERROR, e.message);
+					return
+				}
+				self.system.emit('rest_get', cmd, function (err, result) {
+					if (err !== null) {
+						self.log('error', 'HTTP GET Request failed (' + result.error.code + ')');
+						self.status(self.STATUS_ERROR, result.error.code);
+					}
+					else {
+						self.status(self.STATUS_OK);
+					}
+				}, header);
+			} else {
+				self.system.emit('rest_get', cmd, function (err, result) {
+					if (err !== null) {
+						self.log('error', 'HTTP GET Request failed (' + result.error.code + ')');
+						self.status(self.STATUS_ERROR, result.error.code);
+					}
+					else {
+						self.status(self.STATUS_OK);
+					}
+				});
 			}
-			self.system.emit('rest_get', cmd, function (err, result) {
-				if (err !== null) {
-					self.log('error', 'HTTP GET Request failed (' + result.error.code + ')');
-					self.status(self.STATUS_ERROR, result.error.code);
-				}
-				else {
-					self.status(self.STATUS_OK);
-				}
-			}, header);
-		} else {
-			self.system.emit('rest_get', cmd, function (err, result) {
-				if (err !== null) {
-					self.log('error', 'HTTP GET Request failed (' + result.error.code + ')');
-					self.status(self.STATUS_ERROR, result.error.code);
-				}
-				else {
-					self.status(self.STATUS_OK);
-				}
-			});
-		break;
-		}	
+			break;
 
-		case 'get': {
+		case 'get': 
 		
 		break;
-		}			
+					
 	}
 }
 

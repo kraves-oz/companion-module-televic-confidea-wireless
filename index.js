@@ -51,6 +51,7 @@ instance.prototype.config_fields = function () {
 			type: 'textinput',
 			id: 'UDP_port',
 			label: 'UDP Port for feedback (Camera Control interface)',
+			default: '8000',
 			width: 12
 		}
 	]

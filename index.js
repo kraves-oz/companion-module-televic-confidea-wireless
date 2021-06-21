@@ -46,7 +46,7 @@ instance.prototype.config_fields = function () {
 			id: 'prefix',
 			label: 'IP of WCAP controller',
 			width: 12
-		}
+		},
 		{
 			type: 'textinput',
 			id: 'UDP_port',

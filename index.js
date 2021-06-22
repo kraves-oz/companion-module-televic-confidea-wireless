@@ -34,11 +34,13 @@ instance.prototype.updateConfig = function(config) {
 
 instance.prototype.init = function() {
 	var self = this;
-
-	self.status(self.STATE_OK);
-
+	
 	debug = self.debug;
 	log = self.log;
+
+	self.CHOICES_MIC_NUMBER = [{id: 0, label: 'no presets loaded yet'}];	//TODO - dynamic load # of mics
+	
+	self.status(self.STATE_OK);
 
 	if (self.config.prot == 'udp') {
 		self.init_udp();
@@ -86,6 +88,13 @@ instance.prototype.config_fields = function () {
 			width: 12,
 			label: 'Information',
 			value: 'Televic G3 Conference Microphone control<BR>Uses the IP interface to turn Microphones On/Off<BR>Feedback uses the Camera Interface which must be enabled via web interface.'
+		},
+		{
+			type: 'textinput',			// TODO: NUMBER OF MICS 
+			id: 'num_mics',
+			label: 'Number of Microphones',
+			width: 6,
+			regex: '/^[0-9]+$/'
 		},
 		{
 			type: 'textinput',
@@ -149,6 +158,44 @@ instance.prototype.actions = function(system) {
 					default: '',
 				}
 			]
+		},
+		'mic_on': {
+			label: 'Mic On',
+			options: [{
+				type: 'dropdown',
+				label: 'Mic Number',
+				id: 'mic_num',
+				minChoicesForSearch: 5,
+				choices: self.CHOICES_MIC_NUMBER.sort((a,b) => a.sort - b.sort),
+				default: '1'
+			}]
+		},
+		'mic_off': {
+			label: 'Mic Off',
+			options: [{
+				type: 'dropdown',
+				label: 'Mic Number',
+				id: 'mic_num',
+				minChoicesForSearch: 5,
+				choices: self.CHOICES_MIC_NUMBER.sort((a,b) => a.sort - b.sort),
+				default: '1'
+			}]
+		},
+		'mics_all_off': {
+			label: 'All Mics Off'
+								// ***** TODO CODE
+			}]
+		},
+		'mics_test_loop': {
+			label: 'Test Mic Squence'
+			options: [
+				{
+					type: 'textinput',
+					label: 'Step (ms)',
+					id: 'mic_test_time',
+					default: '1000',
+				},					// ***** TODO CODE
+			}]
 		},
 	});
 }

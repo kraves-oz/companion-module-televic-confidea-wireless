@@ -11,6 +11,7 @@ TO do: Feedback can be displayed using the "Camera Protocol" in network settings
 * Mic ON
 * Mic OFF
 * All Mics OFF  (todo)
+* Mic Test Loop
 
 
 TOdo: **Feedback Options**  (NOT YET IMPLEMENTED)

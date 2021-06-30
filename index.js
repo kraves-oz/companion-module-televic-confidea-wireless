@@ -159,43 +159,44 @@ instance.prototype.actions = function(system) {
 				}
 			]
 		},
+
 		'mic_on': {
 			label: 'Mic On',
-			options: [{
+			options: {
 				type: 'dropdown',
 				label: 'Mic Number',
 				id: 'mic_num',
 				minChoicesForSearch: 5,
 				choices: self.CHOICES_MIC_NUMBER.sort((a,b) => a.sort - b.sort),
 				default: '1'
-			}]
+			},
 		},
+
 		'mic_off': {
 			label: 'Mic Off',
-			options: [{
+			options: {
 				type: 'dropdown',
 				label: 'Mic Number',
 				id: 'mic_num',
 				minChoicesForSearch: 5,
 				choices: self.CHOICES_MIC_NUMBER.sort((a,b) => a.sort - b.sort),
 				default: '1'
-			}]
+			},
 		},
+
 		'mics_all_off': {
-			label: 'All Mics Off'
+			label: 'All Mics Off',
 								// ***** TODO CODE
-			}]
 		},
+
 		'mics_test_loop': {
-			label: 'Test Mic Squence'
-			options: [
-				{
+			label: 'Test Mic Squence',
+			options: {
 					type: 'textinput',
 					label: 'Step (ms)',
 					id: 'mic_test_time',
 					default: '1000',
 				},					// ***** TODO CODE
-			}]
 		},
 	});
 }
